@@ -1,5 +1,11 @@
 version: '3.6'
 services:
+
+  update-configuration:
+    build: .
+    command: git pull
+    # altre configurazioni del servizio
+    
   Elasticsearch:
     image: elasticsearch:7.16.2
     container_name: elasticsearch
@@ -8,7 +14,9 @@ services:
     - elastic_data:/usr/share/elasticsearch/data/
     environment:
       ES_JAVA_OPTS: "-Xmx256m -Xms256m"
-      discovery.type: single-node    
+      discovery.type: single-node 
+    depends_on:
+      - update-configuration
     ports:
     - '9200:9200'
     - '9300:9300'
