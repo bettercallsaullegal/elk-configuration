@@ -1,11 +1,6 @@
 version: '3.6'
 services:
 
-  update-configuration:
-    build: .
-    command: git pull
-    # altre configurazioni del servizio
-    
   Elasticsearch:
     image: elasticsearch:7.16.2
     container_name: elasticsearch
@@ -30,7 +25,7 @@ services:
     volumes:
     - ./logstash/:/logstash_dir
     - /var/lib/docker/containers/:/logcontainers:ro
-    command: logstash -f /logstash_dir/logstash.conf 
+    command: command: git pull && logstash -f /logstash_dir/logstash.conf 
     depends_on:
       - Elasticsearch
     ports:
