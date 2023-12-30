@@ -10,8 +10,6 @@ services:
     environment:
       ES_JAVA_OPTS: "-Xmx256m -Xms256m"
       discovery.type: single-node 
-    depends_on:
-      - update-configuration
     ports:
     - '9200:9200'
     - '9300:9300'
