@@ -25,7 +25,7 @@ services:
     volumes:
     - ./logstash/:/logstash_dir
     - /var/lib/docker/containers/:/logcontainers:ro
-    command: command: git pull && logstash -f /logstash_dir/logstash.conf 
+    command: git pull && logstash -f /logstash_dir/logstash.conf 
     depends_on:
       - Elasticsearch
     ports:
