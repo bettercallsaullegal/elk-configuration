@@ -29,6 +29,7 @@ services:
     restart: always
     volumes:
     - ./logstash/:/logstash_dir
+    - /var/lib/docker/containers/:/logcontainers:ro
     command: logstash -f /logstash_dir/logstash.conf 
     depends_on:
       - Elasticsearch
