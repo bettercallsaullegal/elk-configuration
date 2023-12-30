@@ -5,6 +5,11 @@ services:
     image: elasticsearch:7.16.2
     container_name: elasticsearch
     restart: always
+    environment:
+      - "discovery.type=single-node"
+      - "ELASTIC_USERNAME=elastic"
+      - "ELASTIC_PASSWORD=MagicWord"
+      - "xpack.security.enabled=true"
     volumes:
     - elastic_data:/usr/share/elasticsearch/data/
     environment:
@@ -17,13 +22,13 @@ services:
       - elk
 
   Logstash:
+    user: root
     image: logstash:7.16.2
     container_name: logstash
     restart: always
     volumes:
-    - ./logstash/:/logstash_dir
     - /var/lib/docker/containers/:/logcontainers:ro
-    command: git pull && logstash -f /logstash_dir/logstash.conf 
+    command: bash -c "yum install git -y && git clone https://github.com/bettercallsaullegal/elk-configuration.git && logstash -f elk-configuration/logstash/logstash.conf"
     depends_on:
       - Elasticsearch
     ports:
