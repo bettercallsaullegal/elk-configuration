@@ -6,15 +6,15 @@ services:
     container_name: elasticsearch
     restart: always
     environment:
-      - "discovery.type=single-node"
-      - "ELASTIC_USERNAME=elastic"
-      - "ELASTIC_PASSWORD=MagicWord"
-      - "xpack.security.enabled=true"
+ 
     volumes:
     - elastic_data:/usr/share/elasticsearch/data/
     environment:
       ES_JAVA_OPTS: "-Xmx256m -Xms256m"
       discovery.type: single-node 
+      ELASTIC_USERNAME: elastic
+      ELASTIC_PASSWORD: MagicWord
+      xpack.security.enabled:true
     ports:
     - '9200:9200'
     - '9300:9300'
